@@ -1,0 +1,30 @@
+C:\Users\MohsenHome\Documents\Visual Studio 2015\Projects\RecommandationApi\DapperMapper\bin\Debug\DapperMapper.dll.config
+C:\Users\MohsenHome\Documents\Visual Studio 2015\Projects\RecommandationApi\DapperMapper\bin\Debug\DapperMapper.dll
+C:\Users\MohsenHome\Documents\Visual Studio 2015\Projects\RecommandationApi\DapperMapper\bin\Debug\DapperMapper.pdb
+C:\Users\MohsenHome\Documents\Visual Studio 2015\Projects\RecommandationApi\DapperMapper\bin\Debug\Dapper.dll
+C:\Users\MohsenHome\Documents\Visual Studio 2015\Projects\RecommandationApi\DapperMapper\bin\Debug\Dapper.xml
+C:\Users\MohsenHome\Documents\Visual Studio 2015\Projects\RecommandationApi\DapperMapper\obj\Debug\DapperMapper.dll
+C:\Users\MohsenHome\Documents\Visual Studio 2015\Projects\RecommandationApi\DapperMapper\obj\Debug\DapperMapper.pdb
+C:\Users\AsghariM\Dropbox\WebMining\Framework\DapperMapper\bin\Debug\DapperMapper.dll.config
+C:\Users\AsghariM\Dropbox\WebMining\Framework\DapperMapper\bin\Debug\DapperMapper.dll
+C:\Users\AsghariM\Dropbox\WebMining\Framework\DapperMapper\bin\Debug\DapperMapper.pdb
+C:\Users\AsghariM\Dropbox\WebMining\Framework\DapperMapper\bin\Debug\Dapper.dll
+C:\Users\AsghariM\Dropbox\WebMining\Framework\DapperMapper\bin\Debug\Dapper.xml
+C:\Users\AsghariM\Dropbox\WebMining\Framework\DapperMapper\obj\Debug\DapperMapper.dll
+C:\Users\AsghariM\Dropbox\WebMining\Framework\DapperMapper\obj\Debug\DapperMapper.pdb
+C:\Users\MohsenHome\Dropbox\WebMining\Framework\DapperMapper\bin\Debug\DapperMapper.dll.config
+C:\Users\MohsenHome\Dropbox\WebMining\Framework\DapperMapper\bin\Debug\DapperMapper.dll
+C:\Users\MohsenHome\Dropbox\WebMining\Framework\DapperMapper\bin\Debug\DapperMapper.pdb
+C:\Users\MohsenHome\Dropbox\WebMining\Framework\DapperMapper\bin\Debug\Dapper.dll
+C:\Users\MohsenHome\Dropbox\WebMining\Framework\DapperMapper\bin\Debug\Dapper.xml
+C:\Users\MohsenHome\Dropbox\WebMining\Framework\DapperMapper\obj\Debug\DapperMapper.dll
+C:\Users\MohsenHome\Dropbox\WebMining\Framework\DapperMapper\obj\Debug\DapperMapper.pdb
+C:\Users\AsghariM\Dropbox\WebMining\Framework\DapperMapper\bin\Debug\Newtonsoft.Json.dll
+C:\Users\AsghariM\Dropbox\WebMining\Framework\DapperMapper\bin\Debug\Newtonsoft.Json.xml
+C:\Users\AsghariM\Documents\Visual Studio 2015\Projects\DapperMapper.Test\DapperMapper\bin\Debug\DapperMapper.dll.config
+C:\Users\AsghariM\Documents\Visual Studio 2015\Projects\DapperMapper.Test\DapperMapper\bin\Debug\DapperMapper.dll
+C:\Users\AsghariM\Documents\Visual Studio 2015\Projects\DapperMapper.Test\DapperMapper\bin\Debug\DapperMapper.pdb
+C:\Users\AsghariM\Documents\Visual Studio 2015\Projects\DapperMapper.Test\DapperMapper\bin\Debug\Dapper.dll
+C:\Users\AsghariM\Documents\Visual Studio 2015\Projects\DapperMapper.Test\DapperMapper\bin\Debug\Dapper.xml
+C:\Users\AsghariM\Documents\Visual Studio 2015\Projects\DapperMapper.Test\DapperMapper\obj\Debug\DapperMapper.dll
+C:\Users\AsghariM\Documents\Visual Studio 2015\Projects\DapperMapper.Test\DapperMapper\obj\Debug\DapperMapper.pdb

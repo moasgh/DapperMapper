@@ -1,0 +1,12 @@
+c:\users\asgharim\documents\visual studio 2015\Projects\DapperMapper.Test\DapperMapper.Test\bin\Debug\DapperMapper.Test.exe.config
+c:\users\asgharim\documents\visual studio 2015\Projects\DapperMapper.Test\DapperMapper.Test\bin\Debug\DapperMapper.Test.exe
+c:\users\asgharim\documents\visual studio 2015\Projects\DapperMapper.Test\DapperMapper.Test\bin\Debug\DapperMapper.Test.pdb
+c:\users\asgharim\documents\visual studio 2015\Projects\DapperMapper.Test\DapperMapper.Test\bin\Debug\Dapper.dll
+c:\users\asgharim\documents\visual studio 2015\Projects\DapperMapper.Test\DapperMapper.Test\bin\Debug\DapperMapper.dll
+c:\users\asgharim\documents\visual studio 2015\Projects\DapperMapper.Test\DapperMapper.Test\obj\Debug\DapperMapper.Test.exe
+c:\users\asgharim\documents\visual studio 2015\Projects\DapperMapper.Test\DapperMapper.Test\obj\Debug\DapperMapper.Test.pdb
+c:\users\asgharim\documents\visual studio 2015\Projects\DapperMapper.Test\DapperMapper.Test\bin\Debug\Newtonsoft.Json.dll
+c:\users\asgharim\documents\visual studio 2015\Projects\DapperMapper.Test\DapperMapper.Test\bin\Debug\Dapper.xml
+c:\users\asgharim\documents\visual studio 2015\Projects\DapperMapper.Test\DapperMapper.Test\bin\Debug\Newtonsoft.Json.xml
+c:\users\asgharim\documents\visual studio 2015\Projects\DapperMapper.Test\DapperMapper.Test\bin\Debug\DapperMapper.pdb
+c:\users\asgharim\documents\visual studio 2015\Projects\DapperMapper.Test\DapperMapper.Test\obj\Debug\DapperMapper.Test.csprojResolveAssemblyReference.cache
