@@ -18,14 +18,6 @@ namespace DapperMapper
 	public class DataMapper<T> : IRepository<T> where T : new()
 	{
 		private string _tablename = "";
-		internal static IDbConnection Connection
-		{
-			get
-			{
-				SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Repositoryconn"].ConnectionString);
-				return con;
-			}
-		}
 		public DataMapper(string tablename)
 		{
 			_tablename = DynamicQuery.TableName(tablename);
@@ -41,8 +33,6 @@ namespace DapperMapper
 			PropertyInfo[] properties = Item.GetType().GetProperties();
 			PropertyInfo[] MapProps = properties.Where(p => p.GetCustomAttributes(typeof(NotMap), false).Count() == 0).ToArray();
 			Columns = new StringBuilder();
-			//List<PropertyInfo> _LookUps = new List<PropertyInfo>();
-			//_LookUps = properties.Where(p => p.GetCustomAttributes<LookUp>(false).Count() == 1).ToList();
 			StringBuilder JoinQuary = null;
 			int indexcolumns = 1;
 			int maxindex = MapProps.Count();
@@ -74,8 +64,6 @@ namespace DapperMapper
 			PropertyInfo[] properties = Item.GetType().GetProperties();
 			PropertyInfo[] MapProps = properties.Where(p => p.GetCustomAttributes(typeof(NotMap), false).Count() == 0).ToArray();
 			Columns = new StringBuilder();
-			//List<PropertyInfo> _LookUps = new List<PropertyInfo>();
-			//_LookUps = properties.Where(p => p.GetCustomAttributes<LookUp>(false).Count() == 1).ToList();
 			StringBuilder JoinQuary = null;
 			int indexcolumns = 1;
 			int maxindex = MapProps.Count();
@@ -109,20 +97,24 @@ namespace DapperMapper
 		}
 		public T Insert(T entity)
 		{
-			using (IDbConnection cn = Connection)
+			using (IDbConnection cn = ConnectionManager.Connection)
 			{
 				var parameters = (object)Mapping(entity);
 				cn.Open();
 				cn.Insert(_tablename, parameters);
 				var Id = GetColumnID(entity);
-				dynamic insertetid = cn.ExecuteScalar("SELECT IDENT_CURRENT('" + _tablename + "')");
-				entity.GetType().GetProperty(Id.Name).SetValue(entity, Convert.ChangeType(insertetid, Id.PropertyType));
+				if (Id != null)
+				{
+					dynamic insertetid = cn.ExecuteScalar("SELECT IDENT_CURRENT('" + _tablename + "')");
+					if (insertetid != null)
+						entity.GetType().GetProperty(Id.Name).SetValue(entity, Convert.ChangeType(insertetid, Id.PropertyType));
+				}
 				return entity;
 			}
 		}
 		public void Update(T entity)
 		{
-			using (IDbConnection cn = Connection)
+			using (IDbConnection cn = ConnectionManager.Connection)
 			{
 				var parameters = (object)Mapping(entity);
 				cn.Open();
@@ -135,7 +127,7 @@ namespace DapperMapper
 		/// <param name="entity"></param>
 		public void Delete(T entity)
 		{
-			using (IDbConnection cn = Connection)
+			using (IDbConnection cn = ConnectionManager.Connection)
 			{
 				cn.Open();
 				// Get the ID value and Delete the record
@@ -147,7 +139,7 @@ namespace DapperMapper
 		public T FindByID(object idvalue)
 		{
 			T item = default(T);
-			using (IDbConnection cn = Connection)
+			using (IDbConnection cn = ConnectionManager.Connection)
 			{
 				cn.Open();
 				var Id = GetColumnID(item);
@@ -157,7 +149,7 @@ namespace DapperMapper
 		}
 		public long Count()
 		{
-			using (IDbConnection cn = Connection)
+			using (IDbConnection cn = ConnectionManager.Connection)
 			{
 				cn.Open();
 				long item = Convert.ToInt64(cn.ExecuteScalar("SELECT Count(*) FROM " + _tablename));
@@ -167,7 +159,7 @@ namespace DapperMapper
 		public long Count(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
 		{
 			QueryResult result = DynamicQuery.GetDynamicQuery("SELECT Count(*) ", _tablename, predicate);
-			using (IDbConnection cn = Connection)
+			using (IDbConnection cn = ConnectionManager.Connection)
 			{
 				cn.Open();
 				long item = Convert.ToInt64(cn.ExecuteScalar(result.Sql, (object)result.Param));
@@ -183,7 +175,7 @@ namespace DapperMapper
 			// extract the dynamic sql query and parameters from predicate
 			QueryResult result = DynamicQuery.GetDynamicQuery(_tablename, predicate, JoinQuary, Columns);
 
-			using (IDbConnection cn = Connection)
+			using (IDbConnection cn = ConnectionManager.Connection)
 			{
 				cn.Open();
 				items = cn.Query<T>(result.Sql, (object)result.Param);
@@ -197,7 +189,7 @@ namespace DapperMapper
 			// extract the dynamic sql query and parameters from predicate
 			QueryResult result = DynamicQuery.GetDynamicQueryFullTextSearch(_tablename, predicate);
 
-			using (IDbConnection cn = Connection)
+			using (IDbConnection cn = ConnectionManager.Connection)
 			{
 				cn.Open();
 				items = cn.Query<T>(result.Sql, (object)result.Param);
@@ -216,7 +208,7 @@ namespace DapperMapper
 				// extract the dynamic sql query and parameters from predicate
 				QueryResult result = DynamicQuery.GetDynamicQuery(_tablename, predicate, JoinQuary, Columns);
 
-				using (IDbConnection cn = Connection)
+				using (IDbConnection cn = ConnectionManager.Connection)
 				{
 					cn.Open();
 					items = cn.Query<Y>(result.Sql, (object)result.Param);
@@ -237,7 +229,7 @@ namespace DapperMapper
 
 			QueryResult result = DynamicQuery.GetDynamicQuery(_tablename, joinQuary, columns);
 
-			using (IDbConnection cn = Connection)
+			using (IDbConnection cn = ConnectionManager.Connection)
 			{
 				cn.Open();
 
@@ -255,7 +247,7 @@ namespace DapperMapper
 
 			QueryResult result = DynamicQuery.GetDynamicQuery(_tablename, joinQuary, columns);
 
-			using (IDbConnection cn = Connection)
+			using (IDbConnection cn = ConnectionManager.Connection)
 			{
 				cn.Open();
 
@@ -263,6 +255,21 @@ namespace DapperMapper
 			}
 
 			return items;
+		}
+
+		public void Create()
+		{
+			using (IDbConnection cn = ConnectionManager.Connection)
+			{
+				T entity = new T();
+				var parameters = (object)Mapping(entity);
+				cn.Open();
+				var Id = GetColumnID(entity);
+				if (Id != null)
+				{
+					cn.Create(_tablename, parameters);
+				}
+			}
 		}
 	}
 	public static class DapperExtensions
@@ -274,6 +281,19 @@ namespace DapperMapper
 		public static void Update(this IDbConnection cnn, string tableName, dynamic param)
 		{
 			SqlMapper.Execute(cnn, DynamicQuery.GetUpdateQuery(tableName, param), param);
+		}
+
+		public static void Create(this IDbConnection cnn, string tableName, dynamic param)
+		{
+			try
+			{
+				SqlMapper.Query(cnn, DynamicQuery.GetCreateQuery(tableName, param), param);
+			}
+			catch (SqlException ex)
+			{
+				throw ex;
+			}
+
 		}
 	}
 }

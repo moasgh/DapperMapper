@@ -42,8 +42,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\Documents\Visual Studio 2015\Projects\DapperMapper.Test\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -59,12 +58,14 @@
   <ItemGroup>
     <Compile Include="Attributes\LookUp.cs" />
     <Compile Include="Attributes\Key.cs" />
+    <Compile Include="ConnectionManager.cs" />
     <Compile Include="DataMapper.cs" />
     <Compile Include="Helper\DynamicQuery.cs" />
     <Compile Include="Helper\JToSql.cs" />
     <Compile Include="Helper\QueryResult.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Jsonam.cs" />
+    <Compile Include="OpenSql.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

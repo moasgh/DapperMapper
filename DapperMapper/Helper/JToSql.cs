@@ -11,13 +11,14 @@ namespace DapperMapper.Helper
     {
         private static string ParseString(string str)
         {
-            bool boolValue;
+			Int64 bigintValue;
+			bool boolValue;
             Int32 intValue;
-            Int64 bigintValue;
+            
             double doubleValue;
             DateTime dateValue;
             Guid guidValue;
-
+			
             str = str.Trim();
             // Place checks higher in if-else statement to give higher priority to type.
 
@@ -39,7 +40,7 @@ namespace DapperMapper.Helper
         {
             if (TableExists)
             {
-                object result = Dapper.SqlMapper.ExecuteScalar(DataMapper<object>.Connection, "SELECT TYPE_NAME(user_type_id) FROM sys.all_columns where [name] = '" + columnname + "' and object_id = OBJECT_ID(N'" + tablename + "')");
+                object result = Dapper.SqlMapper.ExecuteScalar(ConnectionManager.Connection, "SELECT TYPE_NAME(user_type_id) FROM sys.all_columns where [name] = '" + columnname + "' and object_id = OBJECT_ID(N'" + tablename + "')");
                 if (result == null)
                     return ParseString(str);
                 else
@@ -83,7 +84,7 @@ namespace DapperMapper.Helper
             set
             {
                 _tablename = value;
-                Exists = Convert.ToBoolean(Dapper.SqlMapper.ExecuteScalar(DapperMapper.DataMapper<object>.Connection, "IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'" + _tablename + "') AND type in (N'U')) BEGIN SELECT 1 END ELSE BEGIN SELECT 0 END"));
+                Exists = Convert.ToBoolean(Dapper.SqlMapper.ExecuteScalar(ConnectionManager.Connection, "IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'" + _tablename + "') AND type in (N'U')) BEGIN SELECT 1 END ELSE BEGIN SELECT 0 END"));
             }
         }
         public Dictionary<string, JColumns> Columns { get; }
@@ -135,7 +136,7 @@ namespace DapperMapper.Helper
         {
             if (Exists == true)
             {
-                return Convert.ToInt32(Dapper.SqlMapper.ExecuteScalar(DapperMapper.DataMapper<object>.Connection, "SELECT MAX(" + TableName + "ID) FROM " + TableName));
+                return Convert.ToInt32(Dapper.SqlMapper.ExecuteScalar(ConnectionManager.Connection, "SELECT MAX(" + TableName + "ID) FROM " + TableName));
             }
             else
                 return 0;
@@ -261,7 +262,7 @@ namespace DapperMapper.Helper
 
             if (currentTable.Exists == false)
             {
-                Dapper.SqlMapper.Execute(DapperMapper.DataMapper<object>.Connection, currentTable.CreateTableQuary(), commandType: System.Data.CommandType.Text);
+                Dapper.SqlMapper.Execute(ConnectionManager.Connection, currentTable.CreateTableQuary(), commandType: System.Data.CommandType.Text);
                 currentTable.Exists = true;
             }
 
@@ -311,7 +312,7 @@ namespace DapperMapper.Helper
                         Console.Write(" ENTITY : " + string.Join(",", DCLIST));
                     }
 
-                    int result = Dapper.SqlMapper.Execute(DapperMapper.DataMapper<object>.Connection, insert, commandType: System.Data.CommandType.Text);
+                    int result = Dapper.SqlMapper.Execute(ConnectionManager.Connection, insert, commandType: System.Data.CommandType.Text);
                     Console.Write(" => " + (result == -1 ? "Row Exists" : result.ToString()) + " Row Effected" + Environment.NewLine);
                     currentTable.Rows.Clear();
                 }

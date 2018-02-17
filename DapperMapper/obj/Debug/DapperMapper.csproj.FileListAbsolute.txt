@@ -28,3 +28,13 @@ C:\Users\AsghariM\Documents\Visual Studio 2015\Projects\DapperMapper.Test\Dapper
 C:\Users\AsghariM\Documents\Visual Studio 2015\Projects\DapperMapper.Test\DapperMapper\bin\Debug\Dapper.xml
 C:\Users\AsghariM\Documents\Visual Studio 2015\Projects\DapperMapper.Test\DapperMapper\obj\Debug\DapperMapper.dll
 C:\Users\AsghariM\Documents\Visual Studio 2015\Projects\DapperMapper.Test\DapperMapper\obj\Debug\DapperMapper.pdb
+C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper\bin\Debug\DapperMapper.dll.config
+C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper\bin\Debug\DapperMapper.dll
+C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper\bin\Debug\DapperMapper.pdb
+C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper\bin\Debug\Dapper.dll
+C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper\bin\Debug\Dapper.xml
+C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper\obj\Debug\DapperMapper.csproj.CoreCompileInputs.cache
+C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper\obj\Debug\DapperMapper.dll
+C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper\obj\Debug\DapperMapper.pdb
+C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper\bin\Debug\Newtonsoft.Json.dll
+C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper\bin\Debug\Newtonsoft.Json.xml

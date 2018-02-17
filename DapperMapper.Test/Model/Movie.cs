@@ -8,6 +8,7 @@ namespace SandBox.Models
 {
 	public class Movie
 	{
+		[Key(true)]
 		public int DicID { get; set; }
 		public string IMDBMOVIEID { get; set; }
 		[NotMap]

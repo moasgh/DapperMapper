@@ -15,10 +15,14 @@ namespace DapperMapper.Test
 	{
 		static void Main(string[] args)
 		{
+			ConnectionManager.Set(ConnectionManager.ConnectionType.UserConfig, "#YOURCONNECTIONSTRING");
 
-			DataMapper<Movie> moviemap= new DataMapper<Movie>(nameof(Movie));
-			moviemap.Insert(new SandBox.Models.Movie());
-			
+			//DataMapper<Movie> moviemap = new DataMapper<Movie>(nameof(Movie));
+			//moviemap.Create();
+
+			var result = OpenSql<dynamic>.DynamicExecute("Select top(1) DicID from Movie");
+			Console.Write(result[0].DicID);
+
 		}
 		public static async void jsontosql()
 		{

@@ -13,12 +13,83 @@ namespace DapperMapper.Helper
 {
 	internal sealed class DynamicQuery
 	{
-
+		private static string GetSqlType(PropertyInfo col)
+		{
+			if (typeof(Int64) == col.PropertyType)
+				return "[BigInt]";
+			else if (typeof(Byte[]) == col.PropertyType)
+				return "[VarBinary]";
+			else if (typeof(Boolean) == col.PropertyType)
+				return "[Bit]";
+			else if (typeof(String) == col.PropertyType)
+				return "[NVarChar](MAX)";
+			else if (typeof(Char[]) == col.PropertyType)
+				return "[NVarChar](1000)";
+			else if (typeof(DateTime) == col.PropertyType)
+				return "[DateTime]";
+			else if (typeof(DateTimeOffset) == col.PropertyType)
+				return "[DateTimeOffset]";
+			else if (typeof(Decimal) == col.PropertyType)
+				return "[Decimal]";
+			else if (typeof(Double) == col.PropertyType)
+				return "[Float]";
+			else if (typeof(Int32) == col.PropertyType)
+				return "[Int]";
+			else if (typeof(Guid) == col.PropertyType)
+				return "[UniqueIdentifier]";
+			else if (typeof(Byte) == col.PropertyType)
+				return "[TinyInt]";
+			else if (typeof(TimeSpan) == col.PropertyType)
+				return "[Timestamp]";
+			else if (typeof(Object) == col.PropertyType)
+				return "[Variant]";
+			else if (typeof(Int16) == col.PropertyType)
+				return "[SmallInt]";
+			else if (typeof(Single) == col.PropertyType)
+				return "[Real]";
+			else if (typeof(float) == col.PropertyType)
+				return "[Float]";
+			return "[Nvarchar](MAX)";
+		}
 		public static string TableName(string tablename)
 		{
 			return tablename.Contains(".") ? tablename.Split('.')[0] + "." + "[" + tablename.Split('.')[1] + "]" : "[" + tablename + "]";
 		}
+		public static string GetCreateQuery(string tableName, dynamic item)
+		{
+			PropertyInfo[] props = item.GetType().GetProperties();
 
+			PropertyInfo[] MapProps = props.Where(p => p.GetCustomAttributes(typeof(NotMap), false).Count() == 0).ToArray();
+
+			PropertyInfo key = MapProps.FirstOrDefault(p => p.GetCustomAttributes(typeof(Key), false).Count() == 1);
+			PropertyInfo identitykey = null;
+			if (key.CustomAttributes.FirstOrDefault().ConstructorArguments.FirstOrDefault().Value.ToString().ToLower() == "true")
+				identitykey = key;
+			//extract the key column from insert
+			IEnumerable<PropertyInfo> _Props = GetColumns(MapProps);
+			List<string> columns = new List<string>();
+			if (identitykey != null)
+				columns.Add(string.Format("[{0}] {1} {2} {3}", identitykey.Name, GetSqlType(identitykey), "IDENTITY(1,1)", "NOT NULL"));
+			foreach (var col in _Props)
+			{
+				if (col.Name == key.Name)
+					columns.Add(string.Format("[{0}] {1} {2} {3}", col.Name, GetSqlType(col), "", "NOT NULL"));
+				else if (col.Name != key.Name)
+					columns.Add(string.Format("[{0}] {1} {2} {3}", col.Name, GetSqlType(col), "", "NULL"));
+
+			}
+
+			string insert = string.Format(@"CREATE TABLE {0} ({1}, CONSTRAINT[PK_{3}] PRIMARY KEY CLUSTERED
+			(
+			   [{2}] ASC
+			)WITH(PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON[PRIMARY]
+			) ON[PRIMARY] TEXTIMAGE_ON[PRIMARY]",
+								 tableName,
+								 string.Join(",", columns),
+								 key.Name,
+								 tableName.Replace("[", "").Replace("]", ""));
+			return insert;
+		}
 		/// <summary>
 		/// Gets the insert query.
 		/// </summary>
@@ -33,8 +104,9 @@ namespace DapperMapper.Helper
 
 			PropertyInfo[] MapProps = props.Where(p => p.GetCustomAttributes(typeof(NotMap), false).Count() == 0).ToArray();
 
-			var identitykey = MapProps.FirstOrDefault(p => p.GetCustomAttributes(typeof(Key), false).Count() == 1);
-
+			PropertyInfo identitykey = MapProps.FirstOrDefault(p => p.GetCustomAttributes(typeof(Key), false).Count() == 1);
+			if (identitykey.CustomAttributes.FirstOrDefault().ConstructorArguments.FirstOrDefault().Value.ToString().ToLower() == "false")
+				identitykey = null;
 			//extract the key column from insert
 			IEnumerable<PropertyInfo> _Props = GetColumns(MapProps);
 			string[] columns;
@@ -181,7 +253,6 @@ namespace DapperMapper.Helper
 
 			return new QueryResult(builder.ToString().TrimEnd(), expando);
 		}
-
 		public static QueryResult GetDynamicQuery(string tableName, StringBuilder JoinQuary, StringBuilder Columns)
 		{
 			//expression.Compile();
