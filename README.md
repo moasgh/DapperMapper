@@ -8,6 +8,12 @@ your application to SQL server.
     <add name="Repositoryconn" connectionString="#YOUR CONNECTIONSTRING#"/>
   </connectionStrings>
 ```
+
+```csharp
+  // you can disregard App.Config and set the connection string on your program
+  ConnectionManager.Set(ConnectionManager.ConnectionType.UserConfig, "#YOURCONNECTIONSTRING");
+```
+
 2. Create Your Model
 
 ```csharp
@@ -29,7 +35,7 @@ your application to SQL server.
   DataMapper<User> usermap= new DataMapper<User>(nameof(User));
 ```
 
-4. Enjoy abilities that we provide for you
+4. Data Management ability after mapping
 
 ```csharp
 
@@ -37,6 +43,10 @@ your application to SQL server.
   usermap.Insert(user);
   Usermap.Update(user);
   Usermap.Delete(user);
+  // Create the table
+  // detect the type of sql based on SqlServer Data Type Mapping
+  // https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-data-type-mappings
+  Usermap.Create();
   
   Usermap.Count();
   Usermap.FindByID(1);
@@ -45,3 +55,11 @@ your application to SQL server.
   IEnumerable<User> all = Usermap.GetAll();
   
 ```
+
+5. Open Sql Query
+
+```csharp
+  var result = OpenSql<dynamic>.DynamicExecute("Select top(1) Name + ' ' + Family as FullName from User");
+  Console.Write(result[0].FullName);
+```
+
