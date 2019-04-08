@@ -1,3 +1,8 @@
+# Install the package
+```csharp
+  Install-Package DapperMapper
+```
+
 # DapperMapper
 If you want to save your time in your development we recommend you to use DAPPERMAPPER we offer you simplest way to connect
 your application to SQL server.
