@@ -105,9 +105,22 @@ namespace DapperMapper
 				var Id = GetColumnID(entity);
 				if (Id != null)
 				{
-					dynamic insertetid = cn.ExecuteScalar("SELECT IDENT_CURRENT('" + _tablename + "')");
-					if (insertetid != null)
-						entity.GetType().GetProperty(Id.Name).SetValue(entity, Convert.ChangeType(insertetid, Id.PropertyType));
+					switch (ConnectionManager.DataProvider)
+					{
+						case ConnectionManager.Provider.SqlClient:
+							dynamic insertetid = cn.ExecuteScalar("SELECT IDENT_CURRENT('" + _tablename + "')");
+							if (insertetid != null)
+								entity.GetType().GetProperty(Id.Name).SetValue(entity, Convert.ChangeType(insertetid, Id.PropertyType));
+							break;
+						case ConnectionManager.Provider.Sqlite:
+							dynamic insertetidsqlite = cn.ExecuteScalar("SELECT last_insert_rowid()");
+							if (insertetidsqlite != null)
+								entity.GetType().GetProperty(Id.Name).SetValue(entity, Convert.ChangeType(insertetidsqlite, Id.PropertyType));
+							break;
+						default:
+							break;
+					}
+
 				}
 				return entity;
 			}
@@ -287,7 +300,22 @@ namespace DapperMapper
 		{
 			try
 			{
-				SqlMapper.Query(cnn, DynamicQuery.GetCreateQuery(tableName, param), param);
+				switch (ConnectionManager.DataProvider)
+				{
+					case ConnectionManager.Provider.SqlClient:
+						SqlMapper.Query(cnn, DynamicQuery.GetCreateQuery(tableName, param), param);
+						break;
+					case ConnectionManager.Provider.Sqlite:
+						dynamic exisits = SqlMapper.QueryFirstOrDefault(cnn, string.Format("SELECT name FROM sqlite_master WHERE type='table' AND name='{0}';", tableName.Replace("[", "").Replace("]", "")));
+						if (exisits == null)
+						{
+							SqlMapper.Query(cnn, DynamicQuery.GetCreateQuerySqlite(tableName, param), param);
+						}
+						break;
+					default:
+						break;
+				}
+
 			}
 			catch (SqlException ex)
 			{

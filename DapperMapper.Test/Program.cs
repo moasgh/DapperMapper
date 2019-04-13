@@ -15,6 +15,7 @@ namespace DapperMapper.Test
 	{
 		static void Main(string[] args)
 		{
+			
 			ConnectionManager.Set(ConnectionManager.ConnectionType.UserConfig, "#YOURCONNECTIONSTRING");
 
 			//DataMapper<Movie> moviemap = new DataMapper<Movie>(nameof(Movie));

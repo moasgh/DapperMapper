@@ -51,6 +51,48 @@ namespace DapperMapper.Helper
 				return "[Float]";
 			return "[Nvarchar](MAX)";
 		}
+		private static string GetSqliteType(PropertyInfo col)
+		{
+			if (typeof(Int64) == col.PropertyType)
+				return "[INTEGER]";
+			else if (typeof(Byte[]) == col.PropertyType)
+				return "[BLOB]";
+			else if (typeof(Boolean) == col.PropertyType)
+				return "[INTEGER]";
+			else if (typeof(String) == col.PropertyType)
+				return "[TEXT]";
+			else if (typeof(Char[]) == col.PropertyType)
+				return "[TEXT]";
+			else if (typeof(DateTime) == col.PropertyType)
+				return "[TEXT]";
+			else if (typeof(DateTimeOffset) == col.PropertyType)
+				return "[TEXT]";
+			else if (typeof(Decimal) == col.PropertyType)
+				return "[NUMBER]";
+			else if (typeof(Double) == col.PropertyType)
+				return "[REAL]";
+			else if (typeof(Int32) == col.PropertyType)
+				return "[INTEGER]";
+			else if (typeof(Guid) == col.PropertyType)
+				return "[TEXT]";
+			else if (typeof(Byte) == col.PropertyType)
+				return "[INTEGER]";
+			else if (typeof(TimeSpan) == col.PropertyType)
+				return "[TEXT]";
+			else if (typeof(Object) == col.PropertyType)
+				return "[BLOB]";
+			else if (typeof(Int16) == col.PropertyType)
+				return "[INTEGER]";
+			else if (typeof(Single) == col.PropertyType)
+				return "[REAL]";
+			else if (typeof(float) == col.PropertyType)
+				return "[REAL]";
+			else if (typeof(float) == col.PropertyType)
+				return "[REAL]";
+			else if (typeof(Enum) == col.PropertyType)
+					return "[INTEGER]";
+			return "[TEXT]";
+		}
 		public static string TableName(string tablename)
 		{
 			return tablename.Contains(".") ? tablename.Split('.')[0] + "." + "[" + tablename.Split('.')[1] + "]" : "[" + tablename + "]";
@@ -88,6 +130,35 @@ namespace DapperMapper.Helper
 								 string.Join(",", columns),
 								 key.Name,
 								 tableName.Replace("[", "").Replace("]", ""));
+			return insert;
+		}
+		public static string GetCreateQuerySqlite(string tableName, dynamic item)
+		{
+			PropertyInfo[] props = item.GetType().GetProperties();
+
+			PropertyInfo[] MapProps = props.Where(p => p.GetCustomAttributes(typeof(NotMap), false).Count() == 0).ToArray();
+
+			PropertyInfo key = MapProps.FirstOrDefault(p => p.GetCustomAttributes(typeof(Key), false).Count() == 1);
+			PropertyInfo identitykey = null;
+			if (key.CustomAttributes.FirstOrDefault().ConstructorArguments.FirstOrDefault().Value.ToString().ToLower() == "true")
+				identitykey = key;
+			//extract the key column from insert
+			IEnumerable<PropertyInfo> _Props = GetColumns(MapProps);
+			List<string> columns = new List<string>();
+			if (identitykey != null)
+				columns.Add(string.Format("[{0}] {1} {2} {3}", identitykey.Name, GetSqliteType(identitykey), "NOT NULL" , " PRIMARY KEY AUTOINCREMENT"));
+			foreach (var col in _Props)
+			{
+				if (col.Name == key.Name)
+					columns.Add(string.Format("[{0}] {1} {2} {3}", col.Name, GetSqliteType(col), "", "NOT NULL"));
+				else if (col.Name != key.Name)
+					columns.Add(string.Format("[{0}] {1} {2} {3}", col.Name, GetSqliteType(col), "", ""));
+
+			}
+
+			string insert = string.Format(@"CREATE TABLE {0} ({1});",
+								 tableName,
+								 string.Join(",", columns));
 			return insert;
 		}
 		/// <summary>

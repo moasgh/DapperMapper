@@ -38,3 +38,7 @@ C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper\obj\Debug\DapperMapper.dl
 C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper\obj\Debug\DapperMapper.pdb
 C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper\bin\Debug\Newtonsoft.Json.dll
 C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper\bin\Debug\Newtonsoft.Json.xml
+C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper\bin\Debug\System.Data.SQLite.dll
+C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper\bin\Debug\System.Data.SQLite.xml
+C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper\bin\Debug\System.Data.SQLite.dll.config
+C:\Users\mohsen\source\repos\DapperMapper\DapperMapper\obj\Debug\DapperMapper.csprojResolveAssemblyReference.cache

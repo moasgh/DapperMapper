@@ -24,3 +24,6 @@ C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper.Test\obj\Debug\DapperMapp
 C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper.Test\obj\Debug\DapperMapper.Test.csproj.CoreCompileInputs.cache
 C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper.Test\obj\Debug\DapperMapper.Test.exe
 C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper.Test\obj\Debug\DapperMapper.Test.pdb
+C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper.Test\bin\Debug\System.Data.SQLite.dll
+C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper.Test\bin\Debug\System.Data.SQLite.xml
+C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper.Test\bin\Debug\System.Data.SQLite.dll.config
