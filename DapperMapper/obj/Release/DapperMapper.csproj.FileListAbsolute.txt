@@ -1,0 +1,16 @@
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\bin\Release\DapperMapper.dll.config
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\bin\Release\DapperMapper.dll
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\bin\Release\DapperMapper.pdb
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\bin\Release\Dapper.dll
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\bin\Release\Newtonsoft.Json.dll
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\bin\Release\System.Data.SQLite.dll
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\bin\Release\Dapper.xml
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\bin\Release\Newtonsoft.Json.pdb
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\bin\Release\Newtonsoft.Json.xml
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\bin\Release\System.Data.SQLite.xml
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\bin\Release\System.Data.SQLite.dll.config
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\obj\Release\DapperMapper.csprojAssemblyReference.cache
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\obj\Release\DapperMapper.csproj.CoreCompileInputs.cache
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\obj\Release\DapperMapper.csproj.CopyComplete
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\obj\Release\DapperMapper.dll
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\obj\Release\DapperMapper.pdb

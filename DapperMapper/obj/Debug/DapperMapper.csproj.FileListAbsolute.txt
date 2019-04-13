@@ -56,3 +56,5 @@ C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\obj\Debug\DapperMapper.cs
 C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\obj\Debug\DapperMapper.csproj.CopyComplete
 C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\obj\Debug\DapperMapper.dll
 C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\obj\Debug\DapperMapper.pdb
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper\obj\Debug\DapperMapper.csprojAssemblyReference.cache
