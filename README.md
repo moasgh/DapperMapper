@@ -1,11 +1,34 @@
 # Install the package
 ```csharp
   Install-Package DapperMapper
+
+  https://www.nuget.org/packages/DapperMapper
+```
+
+# Tools
+DapperMapper will ease your Data Management in 
+<a href="https://docs.microsoft.com/en-us/sql/ssms/sql-server-management-studio-ssms?view=sql-server-2017&OCID=AID739534_SEM_9tLWfSfr&MarinID=s9tLWfSfr_340829462613_sql%20server%20management%20studio_e_c__68566393156_kwd-299629594689_&viewFallbackFrom=sql-server-2017%3F"> Microsoft SQL SERVER </a> and 
+and <a href = "https://www.sqlite.org/index.html"> Sqlite</a> 
+with the same interface. 
+We provide Bulkinsert from JSON file in the package named "JSONAM" ease as one line of code to insert millions record to the supported database.
+
+# JSONAM
+1. Set your connection
+```csharp
+  // you can disregard App.Config and set the connection string on your program
+  ConnectionManager.Set(ConnectionManager.ConnectionType.UserConfig, "#YOURCONNECTIONSTRING");
+  // you can set the data base provider [Default set on MSSQLServer]
+  ConnectionManager.Set(ConnectionManager.ConnectionType.UserConfig, "#YOURCONNECTIONSTRING",ConnectionManager.Provider.SqlClient);
+  ConnectionManager.Set(ConnectionManager.ConnectionType.UserConfig, "#YOURCONNECTIONSTRING",ConnectionManager.Provider.Sqlite);
+```
+2. Start your Bulk insert
+```csharp
+	Jsonam j = new Jsonam();
+	await j.InsertToSqlAsync(TableName: "Person", path: "People.json",DuplicateCheckingColumn:  "pid");
 ```
 
 # DapperMapper
-If you want to save your time in your development we recommend you to use DAPPERMAPPER we offer you simplest way to connect
-your application to SQL server.
+
 1. Create Connection String named "Repositoryconn":
 
 ```csharp
@@ -17,6 +40,9 @@ your application to SQL server.
 ```csharp
   // you can disregard App.Config and set the connection string on your program
   ConnectionManager.Set(ConnectionManager.ConnectionType.UserConfig, "#YOURCONNECTIONSTRING");
+  // you can set the data base provider [Default set on MSSQLServer]
+  ConnectionManager.Set(ConnectionManager.ConnectionType.UserConfig, "#YOURCONNECTIONSTRING",ConnectionManager.Provider.SqlClient);
+  ConnectionManager.Set(ConnectionManager.ConnectionType.UserConfig, "#YOURCONNECTIONSTRING",ConnectionManager.Provider.Sqlite);
 ```
 
 2. Create Your Model

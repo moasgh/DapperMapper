@@ -27,3 +27,21 @@ C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper.Test\obj\Debug\DapperMapp
 C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper.Test\bin\Debug\System.Data.SQLite.dll
 C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper.Test\bin\Debug\System.Data.SQLite.xml
 C:\Users\mohsen\Source\Repos\DapperMapper\DapperMapper.Test\bin\Debug\System.Data.SQLite.dll.config
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper.Test\bin\Debug\DapperMapper.Test.exe.config
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper.Test\bin\Debug\DapperMapper.Test.exe
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper.Test\bin\Debug\DapperMapper.Test.pdb
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper.Test\bin\Debug\Dapper.dll
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper.Test\bin\Debug\DapperMapper.dll
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper.Test\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper.Test\bin\Debug\System.Data.SQLite.dll
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper.Test\bin\Debug\DapperMapper.pdb
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper.Test\bin\Debug\DapperMapper.dll.config
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper.Test\bin\Debug\Dapper.xml
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper.Test\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper.Test\bin\Debug\System.Data.SQLite.xml
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper.Test\bin\Debug\System.Data.SQLite.dll.config
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper.Test\obj\Debug\DapperMapper.Test.csprojAssemblyReference.cache
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper.Test\obj\Debug\DapperMapper.Test.csproj.CoreCompileInputs.cache
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper.Test\obj\Debug\DapperMapper.Test.csproj.CopyComplete
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper.Test\obj\Debug\DapperMapper.Test.exe
+C:\Users\Mohsen\Google Drive\DapperMapper\DapperMapper.Test\obj\Debug\DapperMapper.Test.pdb

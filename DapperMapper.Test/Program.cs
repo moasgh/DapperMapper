@@ -16,12 +16,14 @@ namespace DapperMapper.Test
 		static void Main(string[] args)
 		{
 			
-			ConnectionManager.Set(ConnectionManager.ConnectionType.UserConfig, "#YOURCONNECTIONSTRING");
+            // Configuration for Sql Server
+			ConnectionManager.Set(ConnectionManager.ConnectionType.UserConfig, "#YOURCONNECTIONSTRING" , ConnectionManager.Provider.SqlClient);
+            // Configuration For Sqlite 
+            ConnectionManager.Set(ConnectionManager.ConnectionType.UserConfig, "#YOURCONNECTIONSTRING", ConnectionManager.Provider.Sqlite);
+            //DataMapper<Movie> moviemap = new DataMapper<Movie>(nameof(Movie));
+            //moviemap.Create();
 
-			//DataMapper<Movie> moviemap = new DataMapper<Movie>(nameof(Movie));
-			//moviemap.Create();
-
-			var result = OpenSql<dynamic>.DynamicExecute("Select top(1) DicID from Movie");
+            var result = OpenSql<dynamic>.DynamicExecute("Select top(1) DicID from Movie");
 			Console.Write(result[0].DicID);
 
 		}
@@ -29,7 +31,7 @@ namespace DapperMapper.Test
 		{
 			Jsonam j = new Jsonam();
 			Console.Write("start");
-			await j.InsertToSqlAsync("IMDBMovie", "ImDB.NonPlorizedData.json", "ID", skip: 42957);
+			await j.InsertToSqlAsync(TableName: "IMDBMovie", path: "ImDB.NonPlorizedData.json",DuplicateCheckingColumn:  "ID", skip: 42957);
 			Console.Write(j.ProcessedRecords);
 			Console.ReadKey();
 		}
